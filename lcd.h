@@ -1,5 +1,10 @@
 //LCD Functions Developed by electroSome
-
+#define RS RD2
+#define EN RD3
+#define D4 RD4
+#define D5 RD5
+#define D6 RD6
+#define D7 RD7
 
 void Lcd_Port(char a)
 {
@@ -52,6 +57,24 @@ void Lcd_Set_Cursor(char a, char b)
 	else if(a == 2)
 	{
 		temp = 0xC0 + b - 1;
+		z = temp>>4;
+		y = temp & 0x0F;
+		Lcd_Cmd(z);
+		Lcd_Cmd(y);
+	}
+    
+    else if(a == 3)
+	{
+		temp = 0x90 + b - 1;
+		z = temp>>4;
+		y = temp & 0x0F;
+		Lcd_Cmd(z);
+		Lcd_Cmd(y);
+	}
+    
+    else if(a == 4)
+	{
+		temp = 0xD0 + b - 1;
 		z = temp>>4;
 		y = temp & 0x0F;
 		Lcd_Cmd(z);
